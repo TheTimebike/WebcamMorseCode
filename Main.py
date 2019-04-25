@@ -1,17 +1,14 @@
-import cv2
-import time
+import cv2, time, json
 
 class WebcamHandler:
     def __init__(self, webcamEnum=0):
         self._webcam_number = webcamEnum
-        self.conversion = {
-            "a": ".-",
-            "b": "-...",
-            "c": "-.-.",
-            "d": "-..",
-            " ": " "
-        }
+        self._load("./Morse.json")
 
+    def _load(self, filename):
+        with open(filename, "r") as out:
+            self.conversion = json.load(out)
+    
     def _on(self):
         self.webcam = cv2.VideoCapture(self._webcam_number)
 
