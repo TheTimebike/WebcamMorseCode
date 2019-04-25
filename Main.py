@@ -31,7 +31,7 @@ class WebcamHandler:
     def _convert(self, to_conv):
         _converted = []
         for letter in to_conv:
-            _converted.append(self.conversion[letter])
+            _converted.append(self.conversion.get(letter, None))
         return _converted
 
     def morse(self, to_conv):
@@ -42,6 +42,8 @@ class WebcamHandler:
                     self._flash()
                 elif character == "-":
                     self._hold(3)
+                else:
+                    pass
 
 web = WebcamHandler()
 web.morse("AbCd")
